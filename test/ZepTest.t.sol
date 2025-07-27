@@ -16,10 +16,10 @@ contract ZepTest is Test {
 
     function setUp() public {
         deployer = new DeployZepToken();
-        zepToken = deployer.run();  
+        zepToken = deployer.run();
 
         vm.prank(msg.sender);
-        zepToken.transfer(king, STARTING_BALANCE);      
+        zepToken.transfer(king, STARTING_BALANCE);
     }
 
     function testInitialBalance() public view {
@@ -27,17 +27,15 @@ contract ZepTest is Test {
     }
 
     function testAllowancesWork() public {
-    uint256 initialAllowance = 1000;
+        uint256 initialAllowance = 1000;
 
-    // King approves Queen to spend 1000 tokens.
-    vm.prank(king);
-    zepToken.approve(queen, initialAllowance);
+        // King approves Queen to spend 1000 tokens.
+        vm.prank(king);
+        zepToken.approve(queen, initialAllowance);
 
-    uint256 transferAmount = 500;
+        uint256 transferAmount = 500;
 
-    vm.prank(queen);
-    zepToken.transferFrom(king, queen, transferAmount);
-}
-
-
+        vm.prank(queen);
+        zepToken.transferFrom(king, queen, transferAmount);
+    }
 }
